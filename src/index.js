@@ -22,20 +22,7 @@ app.use(
  })
 );
 app.use(express.json());
-/*const PREAUTH_KEY = '<EIE4432>';
-app.use((req, res, next) => {
-    if (!req.session?.allow_access) {
-        if (req.query?.authkey === PREAUTH_KEY) {
-            req.session.allow_access = true;
-        } else {
-            res.status(401).json({
-                status: 'failed',
-                message: 'Unauthorized key'
-            });
-        }
-    }
-    next();
-});*/
+
 
 app.use('/auth', login);
 //app.use(express.static('static'));
