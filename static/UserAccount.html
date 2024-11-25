@@ -1,0 +1,135 @@
+<!--22021332d Chan Hei-->
+<!--22020839d Wong Sing Ho Samuel-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cinema Ticketing Sales System</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/> <!--New added 24/10-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="/js/activityDetection.js" defer></script>
+        <script src="/js/UserAccount.js" defer></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <style>
+            body{
+                background-image: url(assets/background.jpg);
+                color: rgb(192, 7, 192);
+            }
+            #svg-div{
+                justify-content: center;
+                
+            }
+            #svg{
+                margin-left: 15%;
+            }
+            #svg-text{
+                margin-left: 25%;
+            }
+            #svg text{
+                pointer-events: none;
+            }
+            form{
+                font-size: 1.3rem;
+            }
+            .Paypal-Payment{
+                justify-content: center;
+                text-align: center;
+            }
+            .nav-link{
+                color: rgb(192, 7, 192);
+            }
+            .nav-link:hover{
+                color: rgb(192, 7, 192);
+            }
+            #registrationButton:hover{
+                color: rgb(192, 7, 192);
+            }
+            .btn-primary {
+                border-radius: 1rem;
+                color: rgb(250,240,190);
+                background-color: rgb(243, 132, 169); /* Yellow for Reset button */
+                padding: 0.5rem 2rem;
+                text-transform: uppercase;
+                font-weight: bold;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            .btn-success {
+                border-radius: 1rem;
+                color: rgb(250,240,190);
+                background-color: rgb(243, 132, 169); /* Yellow for Reset button */
+                padding: 0.5rem 2rem;
+                text-transform: uppercase;
+                font-weight: bold;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+                background-color: #ffccd7; /* Light pink for active tabs */
+                color: #c007c0;
+            }
+            input.form-control {
+                background-color: #f3a1b3; /* Light pink background */
+                color: #4b2e2e; /* Dark text color for readability */
+                border: 1px solid #e08d9a; /* Pink border */
+            }
+
+            input.form-control::placeholder {
+                color: #4b2e2e; /* Dark placeholder text */
+            }
+
+            input.form-control:focus {
+                background-color: #f3a1b3; /* Maintain pink background on focus */
+                border-color: #d17a8a; /* Darker pink border on focus */
+                outline: none; /* Remove default outline */
+                box-shadow: 0 0 5px rgba(209, 122, 138, 0.5); /* Subtle pink shadow on focus */
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg d-flex py-2">
+            <!--Link to other page, left side of Nav-bar-->
+            <div class="px-4" id="nav" style="flex:1;">
+                <ul class="navbar-nav ">
+                    <li class="nav-item active">
+                        <a class="nav-link fw-bold" href="index.html">Home</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="px-4 py-2">
+                <p class="">Hello User!</p>
+            </div>
+        </nav>
+     <div class="py-4">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="Account-tab" data-bs-toggle="tab" data-bs-target="#Account" type="button" role="tab" aria-controls="Account" aria-selected="true">Account</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="History-tab" data-bs-toggle="tab" data-bs-target="#History" type="button" role="tab" aria-controls="History" aria-selected="false">Transaction History</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="Account" role="tabpanel" aria-labelledby="Account-tab">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6" id="Account_info">
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Display user image here -->
+                            <img id="userImage" src="" alt="User Image" style="max-width: 50%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <div class="tab-pane fade" id="History" role="tabpanel" aria-labelledby="History-tab"></div>
+                
+          </div>
+    </div>
+    </body>
+</html>

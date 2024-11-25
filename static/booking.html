@@ -1,0 +1,411 @@
+<!--22021332d Chan Hei-->
+<!--22020839d Wong Sing Ho Samuel-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cinema Ticketing Sales System</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/> <!--New added 24/10-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="/js/booking.js"></script>
+        <script src="/js/activityDetection.js" defer></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <style>
+            body {
+                background-image: url(assets/background.jpg);
+                font-size: 1rem; /* Base font size to scale from */
+            }
+            #svg-div {
+                justify-content: center;
+            }
+            #svg {
+                margin-left: 10vw;
+            }
+            #svg-text {
+                margin-left: 15vw;
+            }
+            #svg text {
+                pointer-events: none;
+            }
+            form {
+                font-size: 1.3rem; /* Relative to body */
+            }
+            .Paypal-Payment {
+                justify-content: center;
+                text-align: center;
+            }
+            .nav-link {
+                color: rgb(250, 240, 190);
+            }
+            .nav-link:hover {
+                color: rgb(159, 159, 159);
+            }
+            #digitalReceiptContainer {
+                background-color: white;
+                padding: 2rem;
+                border-radius: 0.5rem;
+                box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+            }
+            #screen {
+                background-color: #f18dbc;
+                color: #9b0101;
+                border-radius: 1rem;
+                padding: 1rem 5vw;
+                text-align: center;
+            }
+            .container.svg-seatmap p {
+                padding: 0.5rem 2vw;
+                margin: 1vw;
+            }
+            /* Responsive image scaling */
+            .form-check img {
+                width: 5vw;
+                height: auto;
+            }
+            /* Card container */
+            .card {
+                max-width: 100%;
+                background: hsla(0, 0%, 100%, 0.8);
+                backdrop-filter: blur(3rem);
+            }
+            /* Purchase Success Message */
+            .Purchase-success p {
+                font-size: 2rem;
+                text-align: center;
+            }
+            .wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2vw;
+                width: 100%;
+                justify-content: center;
+                align-items: flex-start;
+            }
+            .container {
+                flex: 1 1 45%;
+                max-width: 45vw;
+                text-align: center;
+                padding: 1vw;
+            }
+            .booking-info {
+                flex: 1 1 45%;
+                max-width: 45vw;
+                padding: 1vw;
+            }
+            .btn-custom {
+                border-radius: 1rem;
+                color: rgb(250,240,190);
+                background-color: rgb(243, 132, 169); /* Green for Register button */
+                padding: 0.5rem 2rem;
+                text-transform: uppercase;
+                font-weight: bold;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            .btn-custom:hover {
+                background-color: #45a049;
+            }
+
+            .btn-primary {
+                border-radius: 1rem;
+                color: rgb(250,240,190);
+                background-color: rgb(243, 132, 169); /* Yellow for Reset button */
+                padding: 0.5rem 2rem;
+                text-transform: uppercase;
+                font-weight: bold;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            .btn-success {
+                border-radius: 1rem;
+                color: rgb(250,240,190);
+                background-color: rgb(243, 132, 169); /* Yellow for Reset button */
+                padding: 0.5rem 2rem;
+                text-transform: uppercase;
+                font-weight: bold;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            .btn-warning {
+                border-radius: 1rem;
+                color: rgb(250,240,190);
+                background-color: rgb(243, 132, 169); /* Yellow for Reset button */
+                padding: 0.5rem 2rem;
+                text-transform: uppercase;
+                font-weight: bold;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            .btn-warning:hover {
+                background-color: #e67e22;
+            }
+            .form-check-input:checked {
+                background-color: rgb(243, 132, 169);
+                border-color: rgb(243, 132, 169);
+            }
+            .form-check-input {
+                background-color: rgb(248, 215, 226);
+                border-color: rgb(248, 215, 226);
+            }
+            
+            /* Optional: Change checkbox color on hover */
+            .form-check-input:hover {
+                background-color: rgb(245, 174, 197);
+                border-color: rgb(245, 174, 197);
+            }
+            .form-control{
+                background-color: rgb(241, 197, 211);
+                color:rgb(192, 7, 192); 
+                border-color: rgb(241, 197, 211);
+            }
+            .form-control:focus{
+                background-color: rgb(241, 197, 211);
+                color:rgb(192, 7, 192); 
+                border-color: rgb(241, 197, 211);
+            }
+            .form-control::placeholder {
+                color:rgb(192, 7, 192);             
+                font-style: italic;      
+            }
+            select#Month, select#Year {
+                background-color: rgb(241, 197, 211);
+                color: rgb(192, 7, 192);
+                padding: 10px;
+                border: 1px solid rgb(240, 171, 193);
+                border-radius: 5px;
+                font-size: 1rem;
+                appearance: none; /* Remove default arrow styling for consistency across browsers */
+                margin-right: 10px; /* Optional space between month and year */
+                text-align: center;
+                width: 80px; /* Adjust width as needed */
+            }
+
+            /* Hover and focus style */
+            select#Month:focus, select#Year:focus {
+                background-color: lightpink;
+                border-color: lightpink;
+                outline: none;
+            }
+
+            .Purchase-success {
+                background-color: pink;
+                padding: 20px;
+                border-radius: 8px;
+                color: rgb(192, 7, 192);
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for a pop-out effect */
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg d-flex">
+            <!--Link to other page, left side of Nav-bar-->
+            <div class="px-4" id="nav" >
+                <ul class="navbar-nav ">
+                    <li class="nav-item active">
+                        <a class="nav-link fw-bold h-3" style="color: rgb(192, 7, 192);" href="index.html">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="wrapper" style="width: 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
+            <div class="container svg-seatmap" style="text-align: center; max-width: 100%; display: flex; flex-direction: column; align-items: center;">
+                <div class="d-flex d-inline justify-content-center">
+                    <p class="px-3 mx-5" style="background-color: #facde5;">Highest Price</p>
+                    <p class="px-3 mx-5" style="background-color: #f18dbc;">Middle Price</p>
+                    <p class="px-3 mx-5" style="background-color: #e0218a;">Lowest Price</p>
+                    <p class="px-3 mx-5" style="color:#ffffff; background-color: #9b0101;">Not available</p>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <P id="screen">Screen</P>
+                </div>
+                <div >
+                    <svg id="svg" width="480" height="300" style="display: block; margin: auto; text-align: center;" xmlns="http://www.w3.org/2000/svg"></svg>
+                </div>
+                <div>
+                    <button type="button" class="btn btn btn-success d-none" id="Seat_Reset">Reset</button>
+                </div>
+            </div>
+            <div class="booking-info column" style="flex-grow: 1; margin-left: 0; max-width: 100%;">
+                <div class="card mx-auto shadow-5-strong" style="width: 100%; background-color: transparent; backdrop-filter: blur(30px);">
+                    <div class="card-body px-5">
+                        <div class="info">
+                            <p class="h3">Movie Description</p>
+                            <p class="h5" id="movie_Name"></p>
+                            <p class="h5" id="movie_Date"></p>
+                            <p class="h5" id="movie_Time"></p>
+                            <p class="h5" id="movie_Venue"></p>
+                            <p class="h5" id="movie_description"></p>
+                        </div>
+                        <div class="booking-form d-none">
+                            <form>
+                                <div>
+                                    <p class="h3" id="SelectedSeat">You have select seat No. 8,7</p>
+                                </div>
+                                <div>
+                                    <p class="h3" id="TotalPrice">Total price is $160</p>
+                                </div>
+                                <div>
+                                    <p class="h3">Please choose a payment method</p>
+                                </div>
+                                <div class="py-2">
+                                    <label for="Payment_Method">Method: </label>
+                                </div>
+                                <div id="Payment_Method">
+                                    <div class="form-check" >
+                                        <input class="form-check-input" type="radio" name="Payment_Method" id="Master_Visa" value="Master_Visa">
+                                        <label class="form-check-label" for="Master_Visa">Mastercard / Visa</label>
+                                        <div class="d-inline">
+                                            <img src="assets/Mastercard.png" alt="Mastercard" style="width: 7%; height:7%;">
+                                            <img src="assets/Visa.png" alt="Visa" style="width: 7%; height:7%;">
+                                        </div>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="Payment_Method" id="Paypal" value="Paypal">
+                                        <label class="form-check-label" for="Paypal">Paypal</label>
+                                        <img src="assets/paypal.png" alt="Paypal" style="width: 5%; height:5%;">
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="Payment_Method" id="AE" value="AE">
+                                        <label class="form-check-label" for="AE">American Express</label>
+                                        <img src="assets/American_Express.png" alt="American Express" style="width: 10%; height:10%;">
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn btn-success" id="Payment_Proceed">Proceed</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="Master-Visa-Payment d-none">
+                            <form action="/pay/visa" method="post" id="payment_form_visa">
+                                <div>
+                                    <img src="assets/Mastercard.png" alt="Mastercard" style="width: 7%; height:7%;">
+                                    <img src="assets/Visa.png" alt="Visa" style="width: 7%; height:7%;">
+                                </div>
+                                <div>
+                                    <label for="Master_Card_No" class="form-label">Card Number:</label>
+                                    <input type="text" class="form-control" id="Master_Card_No" autocomplete="=false" placeholder="Enter your card number">
+                                </div>
+                                <label for="Month">Expiry month - Expiry year:</label>
+                                <div>
+                                    <select id="Month">
+                                    <option value="placeholder" selected>MM</option>
+                                    <option value="M1">01</option>
+                                    <option value="M2">02</option>
+                                    <option value="M3">03</option>
+                                    <option value="M4">04</option>
+                                    <option value="M5">05</option>
+                                    <option value="M6">06</option>
+                                    <option value="M7">07</option>
+                                    <option value="M9">08</option>
+                                    <option value="M9">09</option>
+                                    <option value="M10">10</option> 
+                                    <option value="M11">11</option>
+                                    <option value="M12">12</option>
+                                    </select>
+                                    <select id="Year">
+                                    <option value="placeholder" selected>YY</option>
+                                    <option value="Y23">23</option>
+                                    <option value="Y24">24</option>
+                                    <option value="Y25">25</option>
+                                    <option value="Y26">26</option>
+                                    <option value="Y27">27</option>
+                                    <option value="Y28">28</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="Master_Cardholder" class="form-label">Cardholder name:</label>
+                                    <input type="text" class="form-control" id="Master_Cardholder" autocomplete="=false" placeholder="Enter the cardholder name">
+                                </div>
+                                <div>
+                                    <label for="Master_Security" class="form-label">Security code:</label>
+                                    <input type="text" class="form-control" id="Master_Security" autocomplete="=false" placeholder="Enter the security code" style="width: 30%;">
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn btn-success" id="Master_Proceed">Proceed</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="Paypal-Payment d-none">
+                            <form action="/pay/paypal" method="post" id="payment_form_paypal">
+                                <img src="assets/paypal.png" alt="Paypal" style="width: 5%; height:5%;">
+                                <p class="h4">using Paypal to pay</p>
+                                <p class="h4">login in to paypal using email or phone number</p>
+                                <div class="py-3">
+                                    <input type="text" class="form-control" id="Paypal_email" autocomplete="=false" placeholder="Enter your email or phone number">
+                                </div>
+                                <div class="py-3">
+                                    <button type="button" class="btn btn btn-success" id="Paypal_Proceed" style="width: 50%;">Proceed</button>
+                                </div>
+                                <hr>
+                                <div class="py-3">
+                                    <button type="button" class="btn btn btn-success" id="Paypal_Register" style="width: 50%;">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="AE-Payment d-none">
+                            <form action="/pay/AE" method="post" id="payment_form_AE">
+                                <p class="h3">Payment Details</p>
+                                <img src="assets/American_Express.png" alt="American Express" style="width: 10%; height:10%;">
+                                <div>
+                                    <label for="AE_Cardholder" class="form-label">Cardholder name:</label>
+                                    <input type="text" class="form-control" id="AE_Cardholder" autocomplete="=false">
+                                </div>
+                                <div>
+                                    <label for="AE_Card_No" class="form-label">Card Number:</label>
+                                    <input type="text" class="form-control" id="AE_Card_No" autocomplete="=false">
+                                </div>
+                                <div>
+                                    <label for="Month">Expiry month - Expiry year:</label>
+                                    <div>
+                                        <select id="Month">
+                                        <option value="placeholder" selected>MM</option>
+                                        <option value="M1">01</option>
+                                        <option value="M2">02</option>
+                                        <option value="M3">03</option>
+                                        <option value="M4">04</option>
+                                        <option value="M5">05</option>
+                                        <option value="M6">06</option>
+                                        <option value="M7">07</option>
+                                        <option value="M9">08</option>
+                                        <option value="M9">09</option>
+                                        <option value="M10">10</option> 
+                                        <option value="M11">11</option>
+                                        <option value="M12">12</option>
+                                        </select>
+                                        <select id="Year">
+                                        <option value="placeholder" selected>YY</option>
+                                        <option value="Y23">23</option>
+                                        <option value="Y24">24</option>
+                                        <option value="Y25">25</option>
+                                        <option value="Y26">26</option>
+                                        <option value="Y27">27</option>
+                                        <option value="Y28">28</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="AE_Security" class="form-label">Security code:</label>
+                                        <input type="text" class="form-control" id="AE_Security" autocomplete="=false">
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn btn-success" id="AE_Proceed">Proceed</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="Purchase-success d-none">
+                            <p class="h1">Purchase successful</p>
+                            <div class="Purchase-success d-none" id="digitalReceiptContainer">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
