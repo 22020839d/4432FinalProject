@@ -18,7 +18,7 @@ async function connect() {
  await client.db('4432-project').command({ ping: 1 });
  console.log('Successfully connected to the database!');
  } catch (err) {
-  console.error('Unable to establish connection to the database!' + err);
+  console.error('Unable to establish connection to the database!');
   process.exit(1);
  }
 }
