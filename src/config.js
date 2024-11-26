@@ -1,5 +1,4 @@
-//<!--22021332d Chan Hei-->
-//<!--22020839d Wong Sing Ho Samuel-->
+
 import dotenv from "dotenv";
 dotenv.config();
 if (!process.env.CONNECTION_STR) {
