@@ -216,7 +216,7 @@ function generateEventTabs(events) {
 
         });
          const createEventTab = $(`<li class="nav-item" role="presentation">
-                                <button class="nav-link" id="CreateEvent-tab" data-bs-toggle="tab" data-bs-target="#CreateEvent" type="button" role="tab" aria-controls="CreateEvent" aria-selected="false">Create New Event</button>
+                                <button class="nav-link" id="CreateEvent-tab" data-bs-toggle="tab" data-bs-target="#CreateEvent" type="button" role="tab" aria-controls="CreateEvent" aria-selected="false">Create New Movie</button>
                              </li>`);
          const createEventTabPane = $(`<div class="tab-pane fade" id="CreateEvent" role="tabpanel" aria-labelledby="CreateEvent-tab">
                                 <form id="createEventForm" class="row" action="/auth/newevents" method="post">
@@ -437,8 +437,8 @@ function generateTransactionTab(transactions) {
             timeZoneName: 'short',
             });
         const transactionDetails = `<p>Transaction ID: ${transaction.username}</p>
-                                    <p>Event: ${transaction.eventname}</p>
-                                    <p>Event Date: ${formattedDate}</p>
+                                    <p>Movie: ${transaction.eventname}</p>
+                                    <p>Movie Date: ${formattedDate}</p>
                                     <p>Puchase Date: ${formattedPurchaseDate}</p>
                                     <p>Price: ${transaction.price}</p>
                                     <hr>`;
