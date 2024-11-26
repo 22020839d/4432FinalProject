@@ -263,7 +263,7 @@ function checkUserStatus() {
       }
     })
     .catch(error => {
-      window.open('/login.html', '_self');
+      window.open('/index.html', '_self');
     });
 }
 function checkUserRole() {
@@ -281,7 +281,7 @@ function checkUserRole() {
             })
             .catch(error => {
                 alert('An error occurred');
-                window.open('/login.html', '_self');
+                window.open('/index.html', '_self');
             });
 }
 function getCookie(name) {
