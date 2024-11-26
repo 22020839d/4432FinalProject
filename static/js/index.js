@@ -263,7 +263,7 @@ function checkUserStatus() {
       }
     })
     .catch(error => {
-      window.open('/login.html', '_self');
+      window.open('/index.html', '_self');
     });
 }
 function checkUserRole() {
