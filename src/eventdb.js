@@ -27,7 +27,6 @@ async function insertEvent(eventname, type, price, image, seatnumber, date, time
     const existingEvent = await fetch_event(uid);
     var reschedule = false;
     var cancel = false;
-
     if(existingEvent &&(existingEvent.date !== date || existingEvent.time !== time)){
       reschedule = true
     }
@@ -46,11 +45,6 @@ async function insertEvent(eventname, type, price, image, seatnumber, date, time
         },
       },
       { upsert: true }
-    );
-    await transaction.updateMany(
-      {eventname: existingEvent.eventname},
-      { $set:{eventname:eventname}},
-      { upsert: false }
     );
     if (result.upsertedCount === 1) {
       console.log('Added 1 event');

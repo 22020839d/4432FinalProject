@@ -266,7 +266,7 @@ function generateEventTabs(events) {
                                             </div>
                                         </div>
                                         <div class="">
-                                            <button type="button" class="btn btn-primary" formmethod="post" id="createEvent">Create Event</button>
+                                            <button type="button" class="btn btn-primary" formmethod="post" id="createEvent">Create Movie</button>
                                         </div>
                                     </form>
                                 </div>`);
