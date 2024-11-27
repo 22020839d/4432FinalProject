@@ -329,8 +329,8 @@ function renderEvents(events) {
                         <p class="card-text">Movie Date: ${obj.date}</p>
                         <p class="card-text">Movie Time: ${obj.time}</p>
                         <p class="card-text">Venue: ${obj.venue}</p>
-                        <p class="card-text">Ticket Price: ${obj.price}</p>
                         <p class="card-text">Decription: ${obj.description}</p>
+                        <p class="card-text">Ticket Price: ${obj.price}</p>
                     </div>
                 </a>
             </div>
