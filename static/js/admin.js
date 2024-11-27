@@ -96,7 +96,7 @@ $(document).ready(async function () {
             .then(data => {
                 if(data.status == 'success'){
                 document.getElementById("createEventForm").reset();
-                alert("New event created");
+                alert("New movie created");
                 } else {
                 alert(data.message || 'Unknown error');
                 }
@@ -548,6 +548,6 @@ async function cancelEvent(eventID){
           })
     } else {
         // The user clicked "Cancel" or closed the dialog, do nothing
-        console.log('Event cancellation canceled');
+        console.log('Movie cancellation canceled');
     }
 }
