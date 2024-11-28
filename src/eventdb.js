@@ -46,6 +46,7 @@ async function insertEvent(eventname, type, price, image, seatnumber, date, time
       },
       { upsert: true }
     );
+    
     if (result.upsertedCount === 1) {
       console.log('Added 1 event');
     } else {

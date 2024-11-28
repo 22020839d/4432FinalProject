@@ -319,6 +319,23 @@ async function all_transaction(){
     return null;
   }
 }
+async function update_transaction_eventname(originalName, newEventName){
+  try {
+    const result = await transaction.updateMany({eventname:originalName},{
+      $set:{eventname: newEventName}
+    });
+
+    if (result.insertedCount === 1) {
+      console.log('Added 1 transaction');
+    } else {
+      console.log('Added 0 transaction');
+    }
+    return true;
+  } catch (err) {
+    console.error('Unable to update the database:', err);
+    return false;
+  }
+};
 
 init_db().catch(console.dir);
 export {
@@ -340,4 +357,5 @@ export {
   update_transaction,
   fetch_transaction,
   all_transaction,
+  update_transaction_eventname,
 };

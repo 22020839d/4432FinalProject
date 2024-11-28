@@ -19,6 +19,7 @@ import {
   all_transaction,
   transaction,
   modify_user,
+  update_transaction_eventname,
   event
 } from './userdb.js';
 import { 
@@ -320,7 +321,7 @@ route.post('/forgot',form.none(), async (req, res)=>{
   }
 });
 route.post('/updateinfo',form.single('profileImage'), async (req, res)=>{
-  if(await modify_user(req.body.username,req.body.password,req.body.nickname, req.body.gender, req.body.birthday,req.file,req.body.uid)){
+  if(await modify_user(req.body.username,req.body.password,req.body.nickname, req.body.gender, req.body.birthday,req.file,req.body.uid, req.body.email)){
     req.session.logged = true;
     req.session.username = req.body.username;
     return res.status(400).json({
@@ -439,6 +440,7 @@ route.post('/api/updateevent/:eventId', form.single('eventImage'), async (req, r
   const eventId = req.params.eventId;
   // Fetch existing event details
   const existingEvent = await fetch_event(eventId);
+  const originalName = existingEvent.eventname;
 
   if (!existingEvent) {
     return res.status(404).json({
@@ -460,7 +462,8 @@ route.post('/api/updateevent/:eventId', form.single('eventImage'), async (req, r
     bookedSeat: existingEvent.BookedSeat,
   };
   // Update the event details in the database
-  const updateResult = await insertEvent(req.body.eventname, updatedEventData.eventType,updatedEventData.price,req.file,updatedEventData.seat,updatedEventData.eventDate,updatedEventData.eventTime,updatedEventData.eventVenue,updatedEventData.eventDescription,existingEvent.uid);
+  var updateResult = await insertEvent(req.body.eventname, updatedEventData.eventType,updatedEventData.price,req.file,updatedEventData.seat,updatedEventData.eventDate,updatedEventData.eventTime,updatedEventData.eventVenue,updatedEventData.eventDescription,existingEvent.uid);
+  updateResult & await update_transaction_eventname(originalName,req.body.eventname)
 
   if (updateResult) {
     return res.status(200).json({

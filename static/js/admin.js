@@ -187,7 +187,7 @@ function generateEventTabs(events) {
                                             </div>
                                             <div >
                                                 <button type="button" class="btn btn-primary" formmethod="post" onClick="editevent('${event.uid}')" id="editEvent">Save Changes</button>
-                                                <button type="button" class="btn btn-primary formmethod="post" onClick="cancelEvent('${event.uid}')" id="cancelButton">Cancel event</button>
+                                                <button type="button" class="btn btn-primary formmethod="post" onClick="cancelEvent('${event.uid}')" id="cancelButton">Cancel Movie</button>
                                             </div>
                                         </div>
                                     </form>
@@ -440,6 +440,7 @@ function generateTransactionTab(transactions) {
                                     <p>Movie: ${transaction.eventname}</p>
                                     <p>Movie Date: ${formattedDate}</p>
                                     <p>Puchase Date: ${formattedPurchaseDate}</p>
+                                    <p>Seat Number: ${transaction.seat}</p>
                                     <p>Price: ${transaction.price}</p>
                                     <hr>`;
 
@@ -533,7 +534,7 @@ function filterEvents() {
     generateEventTabs(filteredEvents);
 }
 async function cancelEvent(eventID){
-    const isConfirmed = window.confirm('Are you sure you want to cancel this event?');
+    const isConfirmed = window.confirm('Are you sure you want to cancel this movie?');
 
     // Check if the user confirmed
     if (isConfirmed) {
